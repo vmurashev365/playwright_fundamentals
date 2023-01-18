@@ -46,7 +46,6 @@ test("Assertions @Assertion", async ({ page }) => {
     await expect(nonExistingElement).not.toBeVisible()
 })
 
-//npx playwright test --config=playwright.config.ts --project=Firefox 
 
 test.describe('Hooks', () => {
 
@@ -66,6 +65,10 @@ test.describe('Hooks', () => {
     })
 
 })
+
+//npm run tests:chrome
+//npm run tests:firefox
+//npm run tests:webkit
 
 test.only("Custom helpers ", async ({ page }) => {
 await loadHomePage(page)
