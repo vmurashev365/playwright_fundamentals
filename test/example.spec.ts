@@ -14,10 +14,10 @@ test("Clicking on elements", async ({ page }) => {
 
     const errorMessage = await page.locator('.alert-error')
     await expect(errorMessage).toContainText('Login and/or password are wrong.')
-}) 
+})
 
 
-test("Working with inputs @Input", async({ page }) => {
+test("Working with inputs @Input", async ({ page }) => {
 
     await page.goto("http://zero.webappsecurity.com/index.html")
     await page.click('button#signin_button')
@@ -44,13 +44,23 @@ test("Assertions @Assertion", async ({ page }) => {
     await expect(nonExistingElement).not.toBeVisible()
 })
 
-test("Screenshots @Screenshot", async ({ page}) => {
-    await page.goto('https://www.example.com')
-    await page.screenshot({path: 'screenshot.png', fullPage: true})
-})
+//npx playwright test --config=playwright.config.ts --project=Firefox 
 
-test("Single element Screenshots @Screenshot", async ({ page}) => {
-    await page.goto('https://www.example.com')
-    const elementOfPage = await page.$('h1')
-    await elementOfPage?.screenshot({ path: 'single_element_screenshot.png' })
+test.describe.only('Hooks', () => {
+
+    test.beforeEach(async ({ page }) => {
+        await page.goto('https://www.example.com')
+    })
+    test("Screenshots @Screenshot", async ({ page }) => {
+
+        //await page.goto('https://www.example.com')
+        await page.screenshot({ path: 'screenshot.png', fullPage: true })
+    })
+
+    test("Single element Screenshots @Screenshot", async ({ page }) => {
+        //await page.goto('https://www.example.com')
+        const elementOfPage = await page.$('h1')
+        await elementOfPage?.screenshot({ path: 'single_element_screenshot.png' })
+    })
+
 })
