@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
 
+import { loadHomePage, assertTitle } from '../helpers'
+
 test("Simple basic test", async ({ page }) => {
     await page.goto('https://www.example.com')
     const pageTitle = await page.locator('h1')
@@ -46,7 +48,7 @@ test("Assertions @Assertion", async ({ page }) => {
 
 //npx playwright test --config=playwright.config.ts --project=Firefox 
 
-test.describe.only('Hooks', () => {
+test.describe('Hooks', () => {
 
     test.beforeEach(async ({ page }) => {
         await page.goto('https://www.example.com')
@@ -63,4 +65,9 @@ test.describe.only('Hooks', () => {
         await elementOfPage?.screenshot({ path: 'single_element_screenshot.png' })
     })
 
+})
+
+test.only("Custom helpers ", async ({ page }) => {
+await loadHomePage(page)
+await assertTitle(page)
 })
