@@ -47,7 +47,7 @@ test("Assertions @Assertion", async ({ page }) => {
 })
 
 
-test.describe('Hooks', () => {
+test.describe.parallel.only('Hooks', () => {
 
     test.beforeEach(async ({ page }) => {
         await page.goto('https://www.example.com')
@@ -70,7 +70,7 @@ test.describe('Hooks', () => {
 //npm run tests:firefox
 //npm run tests:webkit
 
-test.only("Custom helpers ", async ({ page }) => {
+test("Custom helpers ", async ({ page }) => {
 await loadHomePage(page)
 //await page.pause()
 await assertTitle(page)
