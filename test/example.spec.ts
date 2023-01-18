@@ -16,7 +16,8 @@ test("Clicking on elements", async ({ page }) => {
     await expect(errorMessage).toContainText('Login and/or password are wrong.')
 }) 
 
-test.only("Working with inputs", async({ page }) => {
+
+test("Working with inputs @Input", async({ page }) => {
 
     await page.goto("http://zero.webappsecurity.com/index.html")
     await page.click('button#signin_button')
@@ -29,7 +30,7 @@ test.only("Working with inputs", async({ page }) => {
     await expect(errorMessage).toContainText('Login and/or password are wrong.')
 })
 
-test.only("Assertions", async ({ page }) => {
+test("Assertions @Assertion", async ({ page }) => {
     await page.goto('https://www.example.com')
     await expect(page).toHaveURL('https://www.example.com')
     await expect(page).toHaveTitle('Example Domain')
