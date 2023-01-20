@@ -1,3 +1,5 @@
+//npm run test:e2e
+
 import { test, expect } from "@playwright/test"
 
 test.describe("Feedback form", () => {
