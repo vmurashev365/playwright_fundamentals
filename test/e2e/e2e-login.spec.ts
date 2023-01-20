@@ -5,7 +5,7 @@ import { HomePage } from '../../page-objects/HomePage'
 
 //npm run tests:e2e
 
-test.describe.only("login/Logout Flow", () => {
+test.describe("login/Logout Flow", () => {
     let loginPage: LoginPage
     let homePage: HomePage
 

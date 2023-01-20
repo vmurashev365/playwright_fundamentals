@@ -4,11 +4,13 @@ export class HomePage{
 // Define Selectors
     readonly page: Page
     readonly signinButton: Locator
+    readonly searchBox: Locator
 
 //Init selectors using constructor
 constructor (page: Page) {
     this.page = page
     this.signinButton = page.locator('#signin_button')
+    this.searchBox = page.locator('#searchTerm')
 }
 
 
@@ -19,5 +21,10 @@ constructor (page: Page) {
 
     async clickOnSignIn() {
         await this.signinButton.click()
+    }
+
+    async searchFor(phrase: string) {
+        await this.searchBox.type(phrase)
+        await this.page.keyboard.press('Enter')
     }
 }
