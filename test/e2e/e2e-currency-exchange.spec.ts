@@ -2,7 +2,7 @@
 
 import { test, expect } from "@playwright/test"
 
-test.describe.only("Currency exchange form", () => {
+test.describe("Currency exchange form", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('http://zero.webappsecurity.com/index.html')
         await page.click("//button[@id='signin_button']")

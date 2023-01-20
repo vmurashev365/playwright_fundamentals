@@ -1,28 +1,30 @@
 import { test, expect } from '@playwright/test'
 
+import { LoginPage} from '../../page-objects/LoginPage'
+
 //npm run tests:e2e
 
-test.describe("login/Logout Flow", () => {
+test.describe.only("login/Logout Flow", () => {
+    let loginPage: LoginPage
 
+    //Before Hook
     test.beforeEach(async({page}) => {
-        await page.goto('http://zero.webappsecurity.com')
+
+        loginPage = new LoginPage(page)
+        await loginPage.visit()
+        //await page.goto('http://zero.webappsecurity.com')
     })
 
     test("Negative Scenario for Login",async ({page}) => {
-        await page.click("//button[@id='signin_button']")
-        await page.type('#user_login', 'invalid-username')
-        await page.type('#user_password', 'invalid-password')
-        await page.click("input[name='submit']")
-
-        const errorMessage = await page.locator('.alert-error')
-        await expect(errorMessage).toContainText("Login and/or password are wrong.")
+        //Negative Scenario
+        await loginPage.login('invalid username', 'invalid password')
+        await loginPage.assertErrorMessage()
     })
 
     test("Positive Scenario for Login",async ({page}) => {
-        await page.click("//button[@id='signin_button']")
-        await page.type('#user_login', 'username')
-        await page.type('#user_password', 'password')
-        await page.click("input[name='submit']")
+
+        await loginPage.login('username','password')
+
         await page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
 
         const accountSummaryTab = await page.locator("//a[@class='brand']")
