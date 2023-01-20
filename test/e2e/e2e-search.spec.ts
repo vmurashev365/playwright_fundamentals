@@ -1,4 +1,4 @@
-//npm run test:e2e
+//npm run tests:e2e
 
 import { test, expect} from '@playwright/test'
 
