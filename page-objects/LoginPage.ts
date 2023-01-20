@@ -12,7 +12,6 @@ export class LoginPage{
 //Init selectors using constructor
 constructor (page: Page) {
     this.page = page
-    this.signinButton = page.locator('#signin_button')
     this.usernameInput = page.locator('#user_login')
     this.passwordInput = page.locator('#user_password')
     this.submitButton = page.locator("input[name='submit']")
@@ -20,12 +19,8 @@ constructor (page: Page) {
 }
 
 //Define login page methods
-    async visit() {
-        await this.page.goto('http://zero.webappsecurity.com')
-    }
 
     async login(username: string, password: string) {
-        await this.signinButton.click()
         await this.usernameInput.type(username)
         await this.passwordInput.type(password)
         await this.submitButton.click()
