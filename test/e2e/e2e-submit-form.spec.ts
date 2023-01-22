@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test"
 import { FeedbackPage} from '../../page-objects/FeedbackPage'
 import { HomePage } from '../../page-objects/HomePage'
 
-test.describe("Feedback form", () => {
+test.describe.parallel("Feedback form", () => {
 
     let homePage: HomePage
     let feedbackPage: FeedbackPage
