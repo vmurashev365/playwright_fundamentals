@@ -1,6 +1,6 @@
 //npm run tests:e2e
 
-import { test, expect } from "@playwright/test"
+import { test } from "@playwright/test"
 
 import { FeedbackPage} from '../../page-objects/FeedbackPage'
 import { HomePage } from '../../page-objects/HomePage'
