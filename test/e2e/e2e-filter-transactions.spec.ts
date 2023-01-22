@@ -25,7 +25,7 @@ test.describe("Filter Transactions", () => {
         const checkingBrokerage = await page.locator('.well')
         await expect(checkingBrokerage).toBeVisible()
 
-        await page.pause()
+        //await page.pause()
 
     })
 })
