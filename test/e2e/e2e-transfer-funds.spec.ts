@@ -2,7 +2,7 @@
 
 import { test, expect} from "@playwright/test"
 
-test.describe("Transfer Funds and Make Payments", () => {
+test.describe.parallel("Transfer Funds and Make Payments", () => {
     test.beforeEach(async ({page}) => {
         await page.goto('http://zero.webappsecurity.com/index.html')
         await page.click("//button[@id='signin_button']")

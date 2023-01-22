@@ -5,7 +5,7 @@ import { HomePage } from '../../page-objects/HomePage'
 
 //npm run tests:e2e
 
-test.describe("login/Logout Flow", () => {
+test.describe.parallel("login/Logout Flow", () => {
     let loginPage: LoginPage
     let homePage: HomePage
 
@@ -21,6 +21,7 @@ test.describe("login/Logout Flow", () => {
         //Negative Scenario
         await homePage.clickOnSignIn()
         await loginPage.login('invalid username', 'invalid password')
+        await loginPage.wait(1000)
         await loginPage.assertErrorMessage()
     })
 
