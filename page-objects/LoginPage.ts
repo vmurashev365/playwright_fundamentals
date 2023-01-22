@@ -24,7 +24,7 @@ constructor (page: Page) {
         await this.usernameInput.type(username)
         await this.passwordInput.type(password)
         await this.submitButton.click()
-        //await this.page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
+        await this.page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html')
     }
 
     async assertErrorMessage() {
