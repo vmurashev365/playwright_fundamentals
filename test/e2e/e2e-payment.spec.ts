@@ -31,7 +31,7 @@ test.describe("New payment", () => {
         await paymentPage.createPayment()
         await paymentPage.assertSuccessMessage()
 
-        await page.pause()
+        //await page.pause()
 
     })
 })

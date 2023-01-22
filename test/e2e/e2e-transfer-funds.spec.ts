@@ -25,7 +25,7 @@ test.describe("Transfer Funds and Make Payments", () => {
 
         const alertSuccess = await page.locator('.alert-success')
         await expect(alertSuccess).toContainText('successfully submitted')
-        await page.pause()
+        //await page.pause()
 
     })
 })
