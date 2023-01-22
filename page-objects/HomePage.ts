@@ -18,7 +18,7 @@ constructor (page: Page) {
 
 //Define login page methods
     async visit() {
-        await this.page.goto('http://zero.webappsecurity.com')
+        await this.page.goto('http://zero.webappsecurity.com/index.html')
     }
 
     async clickOnSignIn() {

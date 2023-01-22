@@ -1,31 +1,35 @@
 //npm run tests:e2e
 
 import { test, expect } from "@playwright/test"
+import { LoginPage } from '../../page-objects/LoginPage'
+import { HomePage } from '../../page-objects/HomePage'
+import { PaymentPage } from '../../page-objects/PaymentPage'
+import { Navbar } from '../../page-objects/components/Navbar'
 
-test.describe("New payment", () => {
+test.describe.only("New payment", () => {
+    let homePage: HomePage
+    let loginPage: LoginPage
+    let paymentPage: PaymentPage
+    let navbar: Navbar
+
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click("//button[@id='signin_button']")
-        await page.type('#user_login', 'username')
-        await page.type('#user_password', 'password')
-        await page.click("input[name='submit']")
-        await page.goto('http://zero.webappsecurity.com/bank/pay-bills.html')
+        homePage = new HomePage(page)
+        loginPage = new LoginPage(page)
+        paymentPage = new PaymentPage(page)
+        navbar = new Navbar(page)
+
+        homePage.visit()
+        homePage.clickOnSignIn()
+        loginPage.login('username', 'password')
+
     })
 
     test('Pay new payment', async ({ page }) => {
-        await page.selectOption('#sp_payee', 'apple')
-        await page.click('#sp_get_payee_details')
-        await page.waitForSelector('#sp_payee_details')
 
-        await page.selectOption('#sp_account', '6')
-        await page.type('#sp_amount', '5000')
-        await page.type('#sp_date', '2023-01-20')
-        await page.type('#sp_description', 'Payment message')
-        await page.click('#pay_saved_payees')
+        navbar.clickOnTab('Pay Bills')
 
-        const successAlert = await page.locator('#alert_content > span')
-        await expect(successAlert).toBeVisible()
-        await expect(successAlert).toHaveText('The payment was successfully submitted.')
+        await paymentPage.createPayment()
+        await paymentPage.assertSuccessMessage()
 
         await page.pause()
 
